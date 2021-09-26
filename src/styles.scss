@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Import from Node Modeles
+--------------------------------------------- */
+// @import '~bootstrap/scss/bootstrap';
+// @import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+/* Abstracts
+--------------------------------------------- */
+@import 'styles/abstracts/functions';
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/mixin-responsive';
+@import 'styles/abstracts/variables';
+
+/* Base
+--------------------------------------------- */
+@import 'styles/base/font';
+@import 'styles/base/reset';
+@import 'styles/base/typography';
+@import 'styles/base/akamaster';
+
+/* Animate
+--------------------------------------------- */
+// @import 'styles/animate/animate';
+
+/* Layoputs
+--------------------------------------------- */
+// @import 'styles/layout/grid';
+// @import 'styles/layout/navbar';
+// @import 'styles/layout/footer';
+// @import 'styles/layout/forms';
+// @import 'styles/layout/sidebar';
+
+/* Components
+--------------------------------------------- */
+// @import 'styles/components/app.component2';
+
+/* Pages
+--------------------------------------------- */
+// @import 'styles/pages/home';

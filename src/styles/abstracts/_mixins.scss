@@ -1,0 +1,89 @@
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        /* Firefox 18- */
+        @content;
+    }
+
+    &::-moz-placeholder {
+        /* Firefox 19+ */
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+// ############################## Clamp() Fallback #####################################################
+
+@mixin clamp($property, $min-size, $scaler, $max-size, $important:"", $min-size-left:false, $scaler-left:false, $max-size-left:false) {
+    @if $min-size-left == false {
+        #{$property}: $max-size #{$important};
+        #{$property}:#{"min(max(#{$min-size}, #{$scaler}), #{$max-size})"} #{$important}; 
+        #{$property}: clamp($min-size, $scaler, $max-size) #{$important};
+    }
+
+    @else if $min-size-left == 0 or $min-size-left == auto {
+        #{$property}: $max-size $min-size-left #{$important};
+        #{$property}:#{"min(max(#{$min-size}, #{$scaler}), #{$max-size})"} $min-size-left #{$important};
+        #{$property}: clamp($min-size, $scaler, $max-size) $min-size-left #{$important};
+    }
+
+    @else {
+        #{$property}: $max-size $min-size-left #{$important};
+        #{$property}:#{"min(max(#{$min-size}, #{$scaler}), #{$max-size})"} #{"min(max(#{$min-size-left}, #{$scaler-left}), #{$max-size-left})"} #{$important}; 
+        #{$property}: clamp($min-size-left, $scaler-left, $max-size-left) #{$important};
+    }
+}
+
+// ############################## Flex-center #####################################################
+
+@mixin flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin flex-h-center{
+    display: flex;
+    justify-content: center;
+}
+@mixin flex-v-center{
+    display: flex;
+    align-items: center;
+}
+
+// ############################## Images #########################################################
+
+@mixin object-fit {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+// ############################## Text selection color #########################################################
+
+@mixin selection($background, $color:"") {
+    &::-moz-selection {
+        /* Code for Firefox */
+        color: $color;
+        background: $background;
+    }
+    &::selection {
+        color: $color;
+        background: $background;
+    }
+
+}
+@mixin selection-none() {
+	-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		 -khtml-user-select: none;
+		   -moz-user-select: none;
+			-ms-user-select: none;
+				user-select: none;
+}

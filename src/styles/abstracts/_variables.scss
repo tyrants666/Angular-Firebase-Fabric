@@ -1,0 +1,36 @@
+
+//Font
+
+//$vw: (100/1920)+vw;
+
+$vwm: 0.3125vw; //320px; Minimum for Mobile (100/320)
+$vwt: 0.13020833333333334vw; //768px; Minimum for Tablet & Above (100/768)
+$vw: 0.052083333333333336vw; //1920px; (100/1920)
+$vh: 0.09259259259259259vh; //1080px; (100/1080)
+$rem: 0.0625rem;            // 1px = 0.625rem
+$em: 0.0625em;            // 1px = 0.625rem
+
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+// $primary-font: 'Heebo', sans-serif;
+// $title-font: 'Anton', sans-serif;
+$font-family-sans-serif: 'Nunito', sans-serif;
+
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+$black: #000;
+

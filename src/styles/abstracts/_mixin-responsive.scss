@@ -1,0 +1,44 @@
+
+
+$mobile-width: 20em; // 320/16   || 16px is default browser's pixel     
+$tablet-width: 48em; // 768/16   || 16px is default browser's pixel
+$desktop-width: 62em; // 991/16   || 16px is default browser's pixel
+// $desktop-width: 64em; // 1024/16   || 16px is default browser's pixel
+
+@mixin mobile {
+    @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 0.0625em}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop-width + 0.0625em}) {
+        @content;
+    }
+}
+
+@mixin mobiletablet {
+    @media (min-width: #{$mobile-width}) and (max-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
+@mixin tabletdesktop {
+    @media (min-width: #{$tablet-width}){
+        @content;
+    }
+}  
+
+/* Root 1rem = 1px
+--------------------------------------------- */
+// @include mobiletablet {
+//     html {
+//         font-size: 6.25%;
+//     }
+// }
