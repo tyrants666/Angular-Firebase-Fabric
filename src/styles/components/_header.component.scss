@@ -1,0 +1,32 @@
+app-header {
+  display: block;
+  background: var(--theme-core);
+  font-size: 1rem;
+  padding:20*$em 45*$em;
+  // border-radius: 0 0 15*$em 15*$em;
+  box-shadow: 4px 4px 15px hsl(0deg 2% 39% / 22%);
+  
+  nav {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+      color: var(--theme-primary);
+      text-transform: capitalize;
+    }
+    ul{
+      list-style-type: none;
+      li{
+        a{
+          display: block;
+          color: var(--theme-primary);
+          font-weight: 600;
+          &:hover{
+            color: var(--theme-secondary);
+          }
+        }
+      }
+    }
+  }
+}

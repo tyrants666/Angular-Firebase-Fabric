@@ -1,0 +1,29 @@
+app-login {
+  display: block;
+  background: var(--theme-core);
+  font-size: 1rem;
+  padding: 20*$em;
+  // height: 400*$em;
+  width: 400*$em;
+  // margin: auto;
+  // margin-top: 200*$rem;
+  border-radius: 15*$em;
+  // border-radius: 15*$em;
+  text-align: center;
+  box-shadow: -8px -8px 15px #fff,
+  8px 8px 15px hsl(0, 0%, 0%, 15%);
+
+  h1{
+    text-align: center;
+  }
+  img {
+    width: 55*$em;
+    height: auto;
+    margin: 50*$em 0;
+    cursor: pointer;
+    transition: .3s;
+    &:hover {
+          filter: drop-shadow(2px 4px 4px #ccc);
+    }
+  }
+}

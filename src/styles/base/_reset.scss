@@ -1,6 +1,8 @@
 
 :root {
-  --theme-core: #eaeef0;
+  --theme-core: hsl(200, 17%, 93%);
+  --theme-primary: #000;
+  --theme-secondary: hsl(217, 89%, 60%);
 }
 
 * {
@@ -19,5 +21,10 @@ body {
   background: var(--theme-core);
   font-size: 16*$rem;
   font-family: $font-poppins;
-  @extend .flex;
+  min-height: 100vh;
+}
+
+a{
+	text-decoration: none;
+	transition: .2s;
 }

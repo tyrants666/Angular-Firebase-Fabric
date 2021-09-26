@@ -33,8 +33,10 @@
 
 /* Components
 --------------------------------------------- */
-// @import 'styles/components/app.component2';
+@import 'styles/components/header.component';
+@import 'styles/components/login.component';
 
 /* Pages
 --------------------------------------------- */
-// @import 'styles/pages/home';
+@import 'styles/pages/home.component';
+@import 'styles/pages/playground.component';
