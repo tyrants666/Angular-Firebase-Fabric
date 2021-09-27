@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "acme-25": {
+      "hosting": {
+        "acme": [
+          "acme-25"
+        ]
+      }
+    }
+  }
+}
