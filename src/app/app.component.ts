@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-// import firebase from "firebase/app";
-import { GoogleAuthProvider } from "firebase/auth";
+// import firebase from "firebase/compat/app";
+// import { GoogleAuthProvider } from "firebase/auth";
 // import { firebase } from "firebase/app";
+
+// import { AuthService } from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -11,17 +13,16 @@ import { GoogleAuthProvider } from "firebase/auth";
 })
 
 export class AppComponent {
-  constructor(public afAuth: AngularFireAuth) { }
-  title = 'ang-route-block';
+  constructor() { }
 
 
-  signIn() {
-    // const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-    const googleAuthProvider = new GoogleAuthProvider();
-    this.afAuth.signInWithPopup(googleAuthProvider);
-  } 
+  // signIn() {
+  //   // const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+  //   const googleAuthProvider = new GoogleAuthProvider();
+  //   this.afAuth.signInWithPopup(googleAuthProvider);
+  // } 
 
-  signOut() {
-    this.afAuth.signOut();
-  }
+  // signOut() {
+  //   this.afAuth.signOut();
+  // }
 }

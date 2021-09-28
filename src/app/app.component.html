@@ -1,8 +1,4 @@
 
 <app-header></app-header>
 
-<div *ngIf="(afAuth.auth.state | async) === null" (click)="signIn()">
-    <h1>Sign In</h1>
-</div>
-
 <router-outlet></router-outlet> <!-- Let Router decide the Component along with this -->
