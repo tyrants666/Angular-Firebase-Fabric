@@ -31,5 +31,37 @@ export class PlaygroundComponent implements OnInit {
       canvas.freeDrawingBrush.color = (<HTMLTextAreaElement>e.target).value;
     }
 
+    //Clear Canvas ================================================
+    const clear = <HTMLInputElement>document.querySelector('.clear');
+    clear.onclick = e => {
+      canvas.clear();
+    }
+
+    //Upload Image ================================================
+    const upload = <HTMLInputElement>document.querySelector('#upload');
+    upload.onchange = e => {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        console.log('fdsf');
+        var imgObj = new Image();
+        imgObj.src = event.target.result;
+        imgObj.onload = function () {
+          // start fabricJS stuff
+
+          var image = new fabric.Image(imgObj);
+          image.set({
+            left: 250,
+            top: 250,
+            angle: 20,
+            padding: 10,
+            cornerSize: 10
+          });
+          canvas.add(image);
+        }
+
+      }
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
   }
 }
