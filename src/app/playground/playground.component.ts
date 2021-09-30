@@ -25,42 +25,65 @@ export class PlaygroundComponent implements OnInit {
     //   // drawOnCanvas(canvas.toJSON());
     // })
 
-    //Chnage color ================================================
+    //Selection Tool ================================================
+    const selection = <HTMLElement>document.querySelector('.selection');
+    selection.onclick = e => {
+      canvas.isDrawingMode = false;
+    }
+
+    //Pencil Tool ================================================
+    const pencil = <HTMLElement>document.querySelector('.pencil');
+    pencil.onclick = e => {
+      canvas.isDrawingMode = true;
+    }
+
+    //Change color ================================================
     const color = <HTMLInputElement>document.querySelector('#color');
     color.oninput = e => {
       canvas.freeDrawingBrush.color = (<HTMLTextAreaElement>e.target).value;
+      canvas.isDrawingMode = true;
     }
 
     //Clear Canvas ================================================
-    const clear = <HTMLInputElement>document.querySelector('.clear');
+    const clear = <HTMLElement>document.querySelector('.clear');
     clear.onclick = e => {
       canvas.clear();
     }
 
     //Upload Image ================================================
-    // const upload = <HTMLInputElement>document.querySelector('#upload');
-    // upload.onchange = e => {
-    //   var reader = new FileReader();
-    //   reader.onload = function (event) {
-    //     console.log('fdsf');
-    //     var imgObj = new Image();
-    //     imgObj.src = event.target.result;
-    //     imgObj.onload = function () {
-    //       // start fabricJS stuff
+    const upload = <HTMLInputElement>document.querySelector('#upload');
+    upload.onchange = e => {
+        canvas.isDrawingMode = false;
+        var file = (<any>e.target).files[0];
+        var reader = new FileReader();
+        reader.onload = function (f) {
 
-    //       var image = new fabric.Image(imgObj);
-    //       image.set({
-    //         left: 250,
-    //         top: 250,
-    //         angle: 20,
-    //         padding: 10,
-    //         cornerSize: 10
-    //       });
-    //       canvas.add(image);
-    //     }
+          var data = (<any>f.target).result;
+          fabric.Image.fromURL(data, function (img) {
+            var oImg = img.set({ 
+              left: 250,
+              top: 250,
+              angle: 0
+              }).scale(0.4);
 
+            canvas.add(oImg).renderAll();
+            var a = canvas.setActiveObject(oImg);
+            var dataURL = canvas.toDataURL({ format: 'png', quality: 0.8 });
+          });
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Undo ================================================
+    // const undo = <HTMLElement>document.querySelector('.undo');
+    // undo.onclick = e => {
+    //   var lastItemIndex = (canvas.getObjects().length - 1);
+    //   var item = canvas.item(lastItemIndex);
+
+    //   if (item.get('type') === 'path') {
+    //     canvas.remove(item);
+    //     canvas.renderAll();
     //   }
-    //   reader.readAsDataURL(e.target.files[0]);
     // }
 
   }
