@@ -14,7 +14,22 @@ export class PlaygroundComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var canvas = new fabric.Canvas('play')
+    // Set canvas width =================================
+    const canvasSize = () => {
+      let newWidth = document.documentElement.clientWidth / 100 * 80;
+      let newHeight = document.documentElement.clientHeight / 100 * 65;
+      const play = document.querySelector('#play');
+      play?.setAttribute('width', newWidth.toString());
+      play?.setAttribute('height', newHeight.toString());
+      console.log("newWidth" + newWidth);
+    }
+    canvasSize();
+    // window.onresize = e => {
+    //   canvasSize(); 
+    // }
+    
+    // Fabric Js Options =================================
+    var canvas = new fabric.Canvas('play');
     canvas.isDrawingMode = true;
     canvas.freeDrawingBrush.width = 5;
     canvas.freeDrawingBrush.color = '#00aeff';
