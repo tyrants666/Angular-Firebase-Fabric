@@ -1,29 +1,29 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-// import { Router } from '@angular/router';
-// import { SETTINGS as AUTH_SETTINGS } from '@angular/fire/auth';
+// import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthGuard implements CanActivate {
+
   constructor(
-    private afAuth: AngularFireAuth
+   public authService: AuthService,
+   public router:Router
   ) { }
 
-  async canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Promise<boolean | UrlTree> {
-    const user = await this.afAuth.currentUser;
-    const isAuthenticated = user ? true : false;
-    if (!isAuthenticated) {
-      alert('You must be authenticated in order to access this page');
-      // return Router.navigate(['landing']);
-    }
-    return isAuthenticated;
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-
+      if (this.authService.isLoggedIn !== true) {
+        this.router.navigate([''])
+      }
+      return true;
   }
-
 
 }

@@ -2,9 +2,9 @@
 <nav>
     <a routerLink="/"><h1>{{ title }}</h1></a>
     <ul>
-        <li><a routerLink="/playground"> Playground</a></li>
+        <li><a routerLink="playground"> Playground</a></li>
         <!-- <li *ngIf="afAuth.authState | async as user">{{user.displayName}}</li> -->
         <!-- <li *ngIf="(afAuth.auth.state | async) === null" (click)="signIn()" ><a routerLink="/playground">Sign In</a></li> -->
-        <!-- <li *ngIf="(afAuth.auth.state | async)" (click)="signOut()" ><a routerLink="/playground">Logout</a></li> -->
+        <li><a (click)="authService.SignOut()"> Logout</a></li>
     </ul>
 </nav>

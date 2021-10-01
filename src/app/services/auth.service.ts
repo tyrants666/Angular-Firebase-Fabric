@@ -25,35 +25,21 @@ export class AuthService {
     public ngZone: NgZone            // NgZone service to remove outside scope warning
   ) { 
     /* Saving user data in localstorage when logged in and setting up null when logged out */
-    // this.afAuth.authState.subscribe(user => {
-    //   if (user) {
-    //     this.userData = user;
-    //     localStorage.setItem('user', JSON.stringify(this.userData));
-    //     JSON.parse(localStorage.getItem('user'));
-    //   } else {
-    //     localStorage.setItem('user', null);
-    //     JSON.parse(localStorage.getItem('user'));
-    //   }
-    // })
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
+        console.log(localStorage.getItem('user'));
+        
+      } else {
+        localStorage.setItem('user', null as any);
+        JSON.parse(localStorage.getItem('user')!);
+        console.log(localStorage.getItem('user'));
+        
+      }
+    })
   }
-
-
-  // // Sign in with Google
-  // GoogleAuth() {
-  //   return this.AuthLogin(new auth.GoogleAuthProvider());
-  // }
-  // // Auth logic to run auth providers
-  // AuthLogin(provider) {
-  //   return this.afAuth.auth.signInWithPopup(provider)
-  //     .then((result) => {
-  //       this.ngZone.run(() => {
-  //         this.router.navigate(['dashboard']);
-  //       })
-  //       this.SetUserData(result.user);
-  //     }).catch((error) => {
-  //       window.alert(error)
-  //     })
-  // }
 
   // Sign in with Google
   GoogleAuth() {
@@ -62,10 +48,12 @@ export class AuthService {
     .then((result) => {
         console.log('You have been successfully logged in!')
         this.ngZone.run(() => {
-          this.router.navigate(['playground']);
+          setTimeout(() => {
+            this.router.navigate(['playground']);
+          }, 10);
         })
-      // this.SetUserData(result.user);
-      console.log(result.user);
+      this.SetUserData(result.user);
+      console.log("USER : "+result.user);
       
       }).catch((error) => {
         window.alert(error) 
@@ -75,26 +63,32 @@ export class AuthService {
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  // SetUserData(user: firebase.User | null) {
-  //   const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-  //   const userData: User = {
-  //     uid: user.uid,
-  //     email: user.email,
-  //     displayName: user.displayName,
-  //     photoURL: user.photoURL,
-  //     emailVerified: user.emailVerified
-  //   }
-  //   return userRef.set(userData, {
-  //     merge: true
-  //   })
-  // }
+  SetUserData(user: firebase.User | null) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    const userData: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified
+    }
+    return userRef.set(userData, {
+      merge: true
+    })
+  }
 
-  // // Sign out 
-  // SignOut() {
-  //   return this.afAuth.signOut().then(() => {
-  //     localStorage.removeItem('user');
-  //     this.router.navigate(['home']);
-  //   })
-  // }
+  // Returns true when user is looged in and email is verified
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return (user !== null && user.emailVerified !== false) ? true : false;
+  }
+
+  // Sign out 
+  SignOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['']);
+    })
+  }
 
 }

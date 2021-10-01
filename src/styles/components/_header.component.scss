@@ -18,6 +18,10 @@ app-header {
     ul{
       list-style-type: none;
       li{
+        &:not(:first-child){
+          margin-left: 25*$em;
+        }
+        display: inline-block;
         a{
           display: block;
           color: var(--theme-primary);
